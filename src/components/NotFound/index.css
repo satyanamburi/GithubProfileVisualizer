@@ -1,11 +1,10 @@
 .container {
   background-color: #0f172a;
-  padding:30px;
+  padding: 30px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  
 }
 .notfound {
   width: 677px;
@@ -16,7 +15,6 @@
   opacity: 0px;
 }
 .notfoundtext {
-
   height: 48px;
   font-family: Roboto;
   font-size: 32px;
@@ -74,7 +72,7 @@
   text-decoration: none;
 }
 .gotohome {
-  width:140px;
+  width: 140px;
   height: 48pxpx;
   padding: 12px 24px 12px 24px;
   gap: 8px;

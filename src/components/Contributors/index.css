@@ -21,11 +21,11 @@
 }
 .moreContributors {
   border-radius: 100%;
-    width: 48px;
+  width: 48px;
   height: 48px;
   opacity: 0px;
   margin: 5px;
-  padding:10px;
+  padding: 10px;
   font-family: Roboto;
   font-size: 20px;
   font-weight: 700;

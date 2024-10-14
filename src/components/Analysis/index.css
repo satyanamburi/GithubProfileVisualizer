@@ -49,11 +49,11 @@
     color: #f8fafc;
   }
 }
-.loader-container{
+.loader-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  height:100vh;
+  height: 100vh;
 }
 .frame8830 {
   width: 538pxpx;
