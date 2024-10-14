@@ -1,0 +1,86 @@
+.container {
+  background-color: #0f172a;
+  padding:30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  
+}
+.notfound {
+  width: 677px;
+  height: 380px;
+  top: 194px;
+  left: 382px;
+  gap: 0px;
+  opacity: 0px;
+}
+.notfoundtext {
+
+  height: 48px;
+  font-family: Roboto;
+  font-size: 32px;
+  font-weight: 500;
+  line-height: 48px;
+  text-align: center;
+  color: #ffffff;
+}
+.suggestion {
+  height: 64px;
+  gap: 0px;
+  opacity: 0px;
+  font-family: Roboto;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 32px;
+  text-align: center;
+  color: #94a3b8;
+}
+@media screen and (max-width: 767px) {
+  .notfound {
+    width: 296px;
+    height: 166px;
+    gap: 0px;
+    opacity: 0px;
+  }
+  .notfound {
+    width: 137px;
+    height: 24px;
+    top: 351px;
+    left: 111px;
+    gap: 0px;
+    opacity: 0px;
+    font-family: Roboto;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 24px;
+    text-align: center;
+  }
+  .suggestion {
+    width: 300px;
+    height: 40px;
+    top: 383px;
+    left: 30px;
+    gap: 0px;
+    opacity: 0px;
+    font-family: Roboto;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 20px;
+    text-align: center;
+  }
+}
+.homeroute {
+  text-decoration: none;
+}
+.gotohome {
+  width:140px;
+  height: 48pxpx;
+  padding: 12px 24px 12px 24px;
+  gap: 8px;
+  border-radius: 12px 12px 12px 12px;
+  opacity: 0px;
+  background-color: #3b82f6;
+  color: #ffffff;
+  border-style: none;
+}

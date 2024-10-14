@@ -1,0 +1,180 @@
+.repositoryContainer {
+  background: #0f172a;
+  padding: 32px;
+}
+
+.repositories-head {
+  width: 176px;
+  height: 48px;
+  top: 112px;
+  left: 150px;
+  gap: 0px;
+  opacity: 0px;
+  font-family: Roboto;
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 48px;
+  text-align: left;
+  color: #f8fafc;
+}
+@media screen and (max-width: 767px) {
+  .repositoryContainer {
+    padding: 32px;
+    flex-grow: 1;
+    overflow-y: auto;
+    height: 100vh;
+  }
+  .repositories-head {
+    height: 32px;
+    top: 64px;
+    left: 24px;
+    gap: 0px;
+    opacity: 0px;
+    font-family: Roboto;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 32px;
+    text-align: left;
+    color: #f8fafc;
+  }
+}
+.loader-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height:100vh;
+}
+.frame8830 {
+  width: 538pxpx;
+  height: 513pxpx;
+  gap: 32px;
+  opacity: 0px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.textGithub {
+  height: 64px;
+  gap: 0px;
+  opacity: 0px;
+  font-family: Roboto;
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 64px;
+  text-align: left;
+  color: #f8fafc;
+}
+.group2img {
+  width: 538px;
+  height: 417px;
+  gap: 0px;
+  opacity: 0px;
+  align-self: center;
+}
+.wrong {
+  height: 48px;
+  margin-top: 44px;
+  left: 436px;
+  gap: 0px;
+  opacity: 0px;
+  font-family: Roboto;
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 48px;
+  text-align: left;
+  color: #ffffff;
+}
+.tryagain {
+  width: 106pxpx;
+  height: 48pxpx;
+  padding: 12px 24px 12px 24px;
+  gap: 8px;
+  border-radius: 12px 12px 12px 12px;
+  opacity: 0px;
+  background-color: #3b82f6;
+  color: #ffffff;
+  border-style: none;
+}
+@media screen and (max-width: 767px) {
+  .userImage {
+    width: 40px;
+    height: 40px;
+    gap: 0px;
+    border-radius: 161px;
+    opacity: 0px;
+    border: 2px solid #e2e2e2;
+  }
+  .group2img {
+    width: 264px;
+    height: 204px;
+    top: 302px;
+    left: 48px;
+    gap: 0px;
+    opacity: 0px;
+  }
+  .textGithub {
+    width: 173px;
+    height: 32px;
+    top: 222px;
+    left: 93.5px;
+    gap: 0px;
+    opacity: 0px;
+    font-family: HK Grotesk;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 32px;
+    text-align: center;
+  }
+}
+.norepositry {
+  width: 551px;
+  height: 409px;
+  top: 224px;
+  left: 444px;
+  gap: 0px;
+  opacity: 0px;
+}
+.notfound {
+  height: 48px;
+  gap: 0px;
+  opacity: 0px;
+  font-family: Roboto;
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 48px;
+  text-align: left;
+  color: #ffffff;
+}
+@media screen and (max-width: 767px) {
+  .norepositry {
+    width: 296px;
+    height: 220px;
+    top: 160px;
+    left: 32px;
+    gap: 0px;
+    opacity: 0px;
+  }
+  .notfound {
+    height: 32px;
+    top: 404px;
+    left: 94px;
+    gap: 0px;
+    opacity: 0px;
+    font-family: Roboto;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 32px;
+    text-align: left;
+  }
+}
+.homeroute {
+  text-decoration: none;
+}
+.emptyusername {
+  font-family: Roboto;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 32px;
+  text-align: center;
+  color: #f8fafc;
+}
