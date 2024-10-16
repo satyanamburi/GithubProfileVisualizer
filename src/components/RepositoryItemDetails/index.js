@@ -35,7 +35,7 @@ class RepositoryItemDetails extends Component {
     const {repoName} = this.props
     console.log(username)
     console.log(repoName)
-    const url = `https://apis2.ccbp.in/gpv/specific-repo/${username}/${repoName}?api_key=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`
+    const url = `https://apis2.ccbp.in/gpv/specific-repo/${username}/${repoName}?api_key=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`
     const options = {
       method: 'GET',
     }

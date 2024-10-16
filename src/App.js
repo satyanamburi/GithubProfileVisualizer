@@ -9,7 +9,7 @@ import NotFound from './components/NotFound'
 import './App.css'
 
 class App extends Component {
-  state = {username: '', activeRoute: 'Home'}
+  state = {username: '', activeRoute: 'Home', profileDetails: []}
 
   enterUsername = event => {
     this.setState({username: event.target.value})
@@ -19,15 +19,22 @@ class App extends Component {
     this.setState({activeRoute: r})
   }
 
+  addProfile = p => {
+    console.log(p)
+    this.setState({profileDetails: [p]})
+  }
+
   render() {
-    const {username, activeRoute} = this.state
+    const {username, activeRoute, profileDetails} = this.state
     return (
       <GithubContext.Provider
         value={{
           username,
           activeRoute,
+          profileDetails,
           enterUsername: this.enterUsername,
           changeRoute: this.changeRoute,
+          addProfile: this.addProfile,
         }}
       >
         <Switch>

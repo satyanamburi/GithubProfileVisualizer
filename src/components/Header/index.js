@@ -28,7 +28,7 @@ const Header = () => {
                 onClick={() => changeroute('Home')}
                 to="/"
               >
-                <h1 className="github">Github Profile Visualizer</h1>
+                <h1 className="github">GitHub Profile Visualizer</h1>
               </Link>
               <Link
                 onClick={() => changeroute('Home')}
@@ -62,7 +62,7 @@ const Header = () => {
                 onClick={() => changeroute('Home')}
                 to="/"
               >
-                <h1 className="github">Github Profile Visualizer</h1>
+                <h1 className="github">GitHub Profile Visualizer</h1>
               </Link>
               <GiHamburgerMenu color="#ffffff" size={24} onClick={showmenu} />
             </div>

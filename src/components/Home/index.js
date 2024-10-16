@@ -16,19 +16,23 @@ const apistatusConstants = {
 class Counter extends Component {
   state = {
     apistatus: 'INITIAL',
-    profile: '',
+    profile: [],
     errorMsg: '',
+  }
+
+  componentDidMount() {
+    this.getGithubProfile()
   }
 
   getGithubProfile = async () => {
     const {username} = this.props
     this.setState({apistatus: 'LOADING'})
-    const url = `https://api.github.com/users/${username}?api_key=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`
+    const url = `https://api.github.com/users/${username}?api_key=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`
     const option = {method: 'GET'}
     const response = await fetch(url, option)
     if (response.ok) {
       const data = await response.json(response)
-      const profile = {
+      const updatedProfile = {
         avatarUrl: data.avatar_url,
         name: data.name,
         bio: data.bio,
@@ -40,7 +44,11 @@ class Counter extends Component {
         location: data.location,
         blog: data.blog,
       }
-      this.setState({profile, apistatus: 'SUCCESS'})
+      console.log(data)
+      this.setState({
+        profile: updatedProfile,
+        apistatus: 'SUCCESS',
+      })
     } else {
       this.setState({apistatus: 'FAILURE'})
     }
@@ -188,8 +196,7 @@ class Counter extends Component {
                 </button>
               </div>
               {errorMsg && <p className="error">{errorMsg}</p>}
-              {this.renderdetails()}
-              {profile === '' && (
+              {profile.length === 0 ? (
                 <div className="frame8830">
                   <p className="textGithub">Github Profile Visualizer</p>
                   <img
@@ -198,6 +205,8 @@ class Counter extends Component {
                     className="group2img"
                   />
                 </div>
+              ) : (
+                this.renderdetails()
               )}
             </div>
           )

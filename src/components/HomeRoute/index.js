@@ -4,8 +4,14 @@ import Home from '../Home'
 const HomeContainer = () => (
   <GithubContext.Consumer>
     {value => {
-      const {username} = value
-      return <Home username={username} />
+      const {username, profileDetails, addProfile} = value
+      return (
+        <Home
+          username={username}
+          profileDetails={profileDetails}
+          addProfile={addProfile}
+        />
+      )
     }}
   </GithubContext.Consumer>
 )

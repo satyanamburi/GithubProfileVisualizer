@@ -15,14 +15,13 @@ const apistatusConstants = {
   nodata: 'NODATA',
 }
 class Analysis extends Component {
-  state = {analysis: [], apistatus: apistatusConstants.initial, flag: ''}
+  state = {analysis: [], apistatus: apistatusConstants.initial}
 
   componentDidMount() {
     const {username} = this.props
-    console.log(username)
     if (username === '') {
       this.setState({
-        apistatus: apistatusConstants.failure,
+        apistatus: apistatusConstants.nodata,
       })
     } else {
       this.getAnalysisDetails()
@@ -32,7 +31,7 @@ class Analysis extends Component {
   getAnalysisDetails = async () => {
     const {username} = this.props
     this.setState({apistatus: apistatusConstants.loading})
-    const url = `https://apis2.ccbp.in/gpv/profile-summary/${username}?api_key=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`
+    const url = `https://apis2.ccbp.in/gpv/profile-summary/${username}?api_key=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`
     const option = {
       method: 'GET',
     }
@@ -141,7 +140,7 @@ class Analysis extends Component {
         />
         <p className="textGithub">No Data Found</p>
         <p className="emptyusername">
-          GitHub Username is empty, please provide a valid username for analysis
+          GitHub Username is empty, please provide a valid username for Analysis
         </p>
         <Link to="/" className="homeroute">
           <button type="button" className="tryagain">

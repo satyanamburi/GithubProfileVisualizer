@@ -17,15 +17,13 @@ class Repositry extends Component {
   state = {
     repos: [],
     apistatus: apistatusConstants.initial,
-    flag: '',
   }
 
   componentDidMount() {
     const {username} = this.props
-    console.log(username)
     if (username === '') {
       this.setState({
-        apistatus: apistatusConstants.failure,
+        apistatus: apistatusConstants.nodata,
       })
     } else {
       this.getRepositryDetails()
@@ -35,7 +33,7 @@ class Repositry extends Component {
   getRepositryDetails = async () => {
     const {username} = this.props
     this.setState({apistatus: apistatusConstants.loading})
-    const url = `https://apis2.ccbp.in/gpv/repos/${username}?api_key=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`
+    const url = `https://apis2.ccbp.in/gpv/repos/${username}?api_key=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`
     const option = {
       method: 'GET',
     }
