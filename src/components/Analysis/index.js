@@ -17,22 +17,22 @@ const apistatusConstants = {
 class Analysis extends Component {
   state = {analysis: [], apistatus: apistatusConstants.initial, flag: ''}
 
-  onUsername = username => {
-    const {flag} = this.state
-    if (username === '' && flag === '') {
-      this.renderNoData()
-      this.setState({flag: 'stoprender', apistatus: apistatusConstants.nodata})
-    }
-    if (username !== '' && flag === '') {
-      console.log('hi')
-      this.getRepositryDetails(username)
-      this.setState({flag: 'stoprender'})
+  componentDidMount() {
+    const {username} = this.props
+    console.log(username)
+    if (username === '') {
+      this.setState({
+        apistatus: apistatusConstants.failure,
+      })
+    } else {
+      this.getAnalysisDetails()
     }
   }
 
-  getRepositryDetails = async username => {
+  getAnalysisDetails = async () => {
+    const {username} = this.props
     this.setState({apistatus: apistatusConstants.loading})
-    const url = `https://apis2.ccbp.in/gpv/profile-summary/${username}?api_key=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`
+    const url = `https://apis2.ccbp.in/gpv/profile-summary/${username}?api_key=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`
     const option = {
       method: 'GET',
     }
@@ -170,20 +170,11 @@ class Analysis extends Component {
 
   render() {
     return (
-      <GithubContext.Consumer>
-        {value => {
-          const {username} = value
-
-          this.onUsername(username)
-          return (
-            <div className="repositoryContainer">
-              <Header />
-              <h1 className="repositories-head">Analysis</h1>
-              {this.renderdetails()}
-            </div>
-          )
-        }}
-      </GithubContext.Consumer>
+      <div className="repositoryContainer">
+        <Header />
+        <h1 className="repositories-head">Analysis</h1>
+        {this.renderdetails()}
+      </div>
     )
   }
 }

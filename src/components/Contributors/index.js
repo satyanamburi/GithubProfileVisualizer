@@ -2,14 +2,15 @@ import './index.css'
 
 const Contributors = props => {
   const {contributors} = props
+  const updatedContributors = contributors.map(c => ({
+    avatarUrl: c.avatar_url,
+    id: c.id,
+  }))
   const getContributors = () => {
     const contributorsList = []
-    for (let i = 0; i < contributors.length; i += 1) {
-      const contributor = contributors[i]
-      const {avatarUrl, id} = contributor({
-        avatarUrl: contributor.avatar_url,
-        id: contributor.id,
-      })
+    for (let i = 0; i < updatedContributors.length; i += 1) {
+      const contributor = updatedContributors[i]
+      const {avatarUrl, id} = contributor
       contributorsList.push(
         <img
           key={id}

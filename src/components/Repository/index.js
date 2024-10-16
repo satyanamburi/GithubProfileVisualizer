@@ -20,25 +20,27 @@ class Repositry extends Component {
     flag: '',
   }
 
-  onUsername = username => {
-    const {flag} = this.state
-    if (username === '' && flag === '') {
-      this.renderNoData()
-      this.setState({flag: 'stoprender', apistatus: apistatusConstants.nodata})
-    }
-    if (username !== '' && flag === '') {
-      this.getRepositryDetails(username)
-      this.setState({flag: 'stoprender'})
+  componentDidMount() {
+    const {username} = this.props
+    console.log(username)
+    if (username === '') {
+      this.setState({
+        apistatus: apistatusConstants.failure,
+      })
+    } else {
+      this.getRepositryDetails()
     }
   }
 
-  getRepositryDetails = async username => {
+  getRepositryDetails = async () => {
+    const {username} = this.props
     this.setState({apistatus: apistatusConstants.loading})
-    const url = `https://apis2.ccbp.in/gpv/repos/${username}?api_key=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`
+    const url = `https://apis2.ccbp.in/gpv/repos/${username}?api_key=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`
     const option = {
       method: 'GET',
     }
     const response = await fetch(url, option)
+    console.log(response)
     if (response.ok) {
       const data = await response.json()
       this.setState({
@@ -137,19 +139,11 @@ class Repositry extends Component {
 
   render() {
     return (
-      <GithubContext.Consumer>
-        {value => {
-          const {username} = value
-          this.onUsername(username)
-          return (
-            <div className="repositoryContainer">
-              <Header />
-              <h1 className="repositories-head">Repositories</h1>
-              {this.renderdetails()}
-            </div>
-          )
-        }}
-      </GithubContext.Consumer>
+      <div className="repositoryContainer">
+        <Header />
+        <h1 className="repositories-head">Repositories</h1>
+        {this.renderdetails()}
+      </div>
     )
   }
 }

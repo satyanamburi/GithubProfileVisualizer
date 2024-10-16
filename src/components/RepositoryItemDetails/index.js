@@ -16,24 +16,26 @@ class RepositoryItemDetails extends Component {
   state = {
     repositoryItemDetailsList: '',
     apiStatus: apiStatusConstants.initial,
-    flag: '',
   }
 
-  onUsername = u => {
-    const {flag} = this.state
-    if (flag === '') {
-      this.getRepositoryItemDetails(u)
-      this.setState({flag: 'stoprender'})
+  componentDidMount() {
+    const {username} = this.props
+    if (username === '') {
+      this.setState({
+        apistatus: apiStatusConstants.failure,
+      })
+    } else {
+      this.getRepositoryItemDetails()
     }
   }
 
-  getRepositoryItemDetails = async username => {
+  getRepositoryItemDetails = async () => {
     this.setState({apiStatus: apiStatusConstants.inProgress})
-    const {match} = this.props
-    const {params} = match
-    const {repoName} = params
-
-    const url = `https://apis2.ccbp.in/gpv/specific-repo/${username}/${repoName}?api_key=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`
+    const {username} = this.props
+    const {repoName} = this.props
+    console.log(username)
+    console.log(repoName)
+    const url = `https://apis2.ccbp.in/gpv/specific-repo/${username}/${repoName}?api_key=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`
     const options = {
       method: 'GET',
     }
@@ -50,19 +52,26 @@ class RepositoryItemDetails extends Component {
     }
   }
 
+  updateRepository = repoDetails => ({
+    name: repoDetails.name,
+    owner: repoDetails.owner,
+    description: repoDetails.description,
+    stargazersCount: repoDetails.stargazers_count,
+    forksCount: repoDetails.forks_count,
+    languages: repoDetails.lanuages,
+    issuesCount: repoDetails.open_issues_count,
+    contributors: repoDetails.contributors,
+    watchersCount: repoDetails.watchers_count,
+  })
+
+  updatedOwnerList = owner => ({
+    avatarUrl: owner.avatar_url,
+    login: owner.login,
+  })
+
   renderSuccess = () => {
     const {repositoryItemDetailsList} = this.state
-    const updateRepository = {
-      name: repositoryItemDetailsList.name,
-      owner: repositoryItemDetailsList.owner,
-      description: repositoryItemDetailsList.description,
-      stargazersCount: repositoryItemDetailsList.stargazers_count,
-      forksCount: repositoryItemDetailsList.forks_count,
-      languages: repositoryItemDetailsList.lanuages,
-      issuesCount: repositoryItemDetailsList.open_issues_count,
-      contributors: repositoryItemDetailsList.contributors,
-      watchersCount: repositoryItemDetailsList.watchers_count,
-    }
+    const repositoryItemList = this.updateRepository(repositoryItemDetailsList)
     const {
       name,
       owner,
@@ -73,8 +82,8 @@ class RepositoryItemDetails extends Component {
       issuesCount,
       contributors,
       watchersCount,
-    } = updateRepository
-    const ownerAvatar = {avatarUrl: owner.avatar_url, login: owner.login}
+    } = repositoryItemList
+    const ownerAvatar = this.updatedOwnerList(owner)
 
     const {avatarUrl, login} = ownerAvatar
     const languagesList = ['color1', 'color2', 'color3', 'color4', 'color5']
@@ -177,19 +186,11 @@ class RepositoryItemDetails extends Component {
 
   render() {
     return (
-      <GithubContext.Consumer>
-        {value => {
-          const {username} = value
-          this.onUsername(username)
-          return (
-            <div className="repositoryContainer">
-              <Header />
-              <h1 className="repositories-head">Repositories</h1>
-              {this.renderdetails()}
-            </div>
-          )
-        }}
-      </GithubContext.Consumer>
+      <div className="repositoryContainer">
+        <Header />
+        <h1 className="repositories-head">Repositories</h1>
+        {this.renderdetails()}
+      </div>
     )
   }
 }

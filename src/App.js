@@ -1,10 +1,10 @@
 import {Component} from 'react'
 import {Route, Switch} from 'react-router-dom'
 import GithubContext from './components/GithubContext'
-import HomeProps from './components/HomeProps'
-import Repositry from './components/Repositry'
-import Analysis from './components/Analysis'
-import RepositoryItemDetails from './components/RepositoryItemDetails'
+import HomeRoute from './components/HomeRoute'
+import RepositoryRoute from './components/RepositoryRoute'
+import AnalysisRoute from './components/AnalysisRoute'
+import RepositoryItemDetailsRoute from './components/RepositoryItemDetailsRoute'
 import NotFound from './components/NotFound'
 import './App.css'
 
@@ -31,14 +31,14 @@ class App extends Component {
         }}
       >
         <Switch>
-          <Route exact path="/" component={HomeProps} />
-          <Route exact path="/repositories" component={Repositry} />
+          <Route exact path="/" component={HomeRoute} />
+          <Route exact path="/repositories" component={RepositoryRoute} />
           <Route
             exact
             path="/repositories/:repoName"
-            component={RepositoryItemDetails}
+            component={RepositoryItemDetailsRoute}
           />
-          <Route exact path="/analysis" component={Analysis} />
+          <Route exact path="/analysis" component={AnalysisRoute} />
           <Route component={NotFound} />
         </Switch>
       </GithubContext.Provider>

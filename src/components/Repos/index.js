@@ -4,14 +4,15 @@ import './index.css'
 
 const Repos = props => {
   const {repodetails} = props
-  const repoItems = repodetails({
-    name: repodetails.name,
-    owner: repodetails.owner,
-    description: repodetails.description,
-    stargazersCount: repodetails.stargazers_count,
-    forksCount: repodetails.forks_count,
-    languages: repodetails.languages,
+  const updatedRepoItems = repo => ({
+    name: repo.name,
+    owner: repo.owner,
+    description: repo.description,
+    stargazersCount: repo.stargazers_count,
+    forksCount: repo.forks_count,
+    languages: repo.languages,
   })
+  const repoItems = updatedRepoItems(repodetails)
   const {
     name,
     owner,
@@ -20,10 +21,11 @@ const Repos = props => {
     forksCount,
     languages,
   } = repoItems
-  const {avatarUrl, login} = owner({
-    avatarUrl: owner.avatar_url,
-    login: owner.login,
+  const updatedOwner = o => ({
+    avatarUrl: o.avatar_url,
+    login: o.login,
   })
+  const {avatarUrl, login} = updatedOwner(owner)
 
   const languagesList = ['color1', 'color2', 'color3', 'color4', 'color5']
   return (
@@ -49,7 +51,7 @@ const Repos = props => {
         <div className="repo-counts">
           <div className="star-container">
             <img
-              src="https://res.cloudinary.com/ddsn9feta/image/upload/v1719294440/Star_-_16px.1_cpjsj4.png"
+              src="https://res.cloudinary.com/dzyzdtel2/image/upload/v1729001650/Star_-_16px.1_pkcugk.png"
               alt="star"
               className="star-image"
             />
@@ -57,8 +59,8 @@ const Repos = props => {
           </div>
           <div className="star-container">
             <img
-              src="https://res.cloudinary.com/ddsn9feta/image/upload/v1719294440/Git_3_w5zp4b.png"
-              alt="git"
+              src="https://res.cloudinary.com/dzyzdtel2/image/upload/v1729001743/Git_3_gdi0sx.png"
+              alt="fork"
               className="star-image"
             />
             <p className="repo-starCount">{forksCount} </p>

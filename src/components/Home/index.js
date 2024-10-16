@@ -16,15 +16,14 @@ const apistatusConstants = {
 class Counter extends Component {
   state = {
     apistatus: 'INITIAL',
-    profile: [],
+    profile: '',
     errorMsg: '',
   }
 
   getGithubProfile = async () => {
     const {username} = this.props
-    console.log(username)
     this.setState({apistatus: 'LOADING'})
-    const url = `https://api.github.com/users/${username}?api_key=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`
+    const url = `https://api.github.com/users/${username}?api_key=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`
     const option = {method: 'GET'}
     const response = await fetch(url, option)
     if (response.ok) {
@@ -41,7 +40,6 @@ class Counter extends Component {
         location: data.location,
         blog: data.blog,
       }
-      console.log(data)
       this.setState({profile, apistatus: 'SUCCESS'})
     } else {
       this.setState({apistatus: 'FAILURE'})
@@ -50,7 +48,6 @@ class Counter extends Component {
 
   onUsername = () => {
     const {username} = this.props
-    console.log(username)
     if (username === '') {
       this.setState({
         errorMsg: 'Enter the valid github username',
@@ -123,17 +120,6 @@ class Counter extends Component {
     )
   }
 
-  renderInitial = () => (
-    <div className="frame8830">
-      <p className="textGithub">Github Profile Visualizer</p>
-      <img
-        src="https://res.cloudinary.com/dzyzdtel2/image/upload/v1728054782/akv0fe40pljpgyg8dbjp.png"
-        alt="gitHub profile visualizer home page"
-        className="group2img"
-      />
-    </div>
-  )
-
   renderLoading = () => (
     <div className="loader-container" data-testid="loader">
       <Loader type="TailSpin" color="#3B82F6" height={50} width={50} />
@@ -164,8 +150,6 @@ class Counter extends Component {
         return this.rendersuccess()
       case apistatusConstants.failure:
         return this.renderFailure()
-      case apistatusConstants.initial:
-        return this.renderInitial()
       case apistatusConstants.loading:
         return this.renderLoading()
       default:
@@ -174,7 +158,7 @@ class Counter extends Component {
   }
 
   render() {
-    const {errorMsg} = this.state
+    const {errorMsg, profile} = this.state
     return (
       <GithubContext.Consumer>
         {value => {
@@ -205,6 +189,16 @@ class Counter extends Component {
               </div>
               {errorMsg && <p className="error">{errorMsg}</p>}
               {this.renderdetails()}
+              {profile === '' && (
+                <div className="frame8830">
+                  <p className="textGithub">Github Profile Visualizer</p>
+                  <img
+                    src="https://res.cloudinary.com/dzyzdtel2/image/upload/v1728054782/akv0fe40pljpgyg8dbjp.png"
+                    alt="gitHub profile visualizer home page"
+                    className="group2img"
+                  />
+                </div>
+              )}
             </div>
           )
         }}
