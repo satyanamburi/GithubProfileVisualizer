@@ -1,7 +1,6 @@
 import {Link} from 'react-router-dom'
 import Loader from 'react-loader-spinner'
 import {Component} from 'react'
-import GithubContext from '../GithubContext'
 import Header from '../Header'
 import PieChart from '../PieChart'
 import LinearChart from '../LinearChart'
@@ -36,10 +35,9 @@ class Analysis extends Component {
       method: 'GET',
     }
     const response = await fetch(url, option)
-    console.log(response)
     if (response.ok) {
       const data = await response.json()
-      console.log(data)
+
       this.setState({analysis: data, apistatus: apistatusConstants.success})
     } else {
       this.setState({apistatus: apistatusConstants.failure})
@@ -54,16 +52,22 @@ class Analysis extends Component {
       quarterCommitCount,
       repoCommitCount,
     } = analysis
-    let k = Object.keys(langCommitCount)
-    const langCommitsCount = k.map(i => ({name: i, value: langCommitCount[i]}))
-    const rkeys = Object.keys(langRepoCount)
-    const langReposCount = rkeys.map(i => ({name: i, value: langRepoCount[i]}))
-    const commitsKeys = Object.keys(quarterCommitCount)
-    const quarterCommitsCount = commitsKeys.map(i => ({
+    const commitKeys = Object.keys(langCommitCount)
+    const langCommitsCount = commitKeys.map(i => ({
+      name: i,
+      value: langCommitCount[i],
+    }))
+    const repoKeys = Object.keys(langRepoCount)
+    const langReposCount = repoKeys.map(i => ({
+      name: i,
+      value: langRepoCount[i],
+    }))
+    const quarterKeys = Object.keys(quarterCommitCount)
+    const quarterCommitsCount = quarterKeys.map(i => ({
       name: i,
       commits: quarterCommitCount[i],
     }))
-    k = Object.keys(repoCommitCount)
+    const k = Object.keys(repoCommitCount)
     const repoCommitsCount = k.map(i => ({name: i, value: repoCommitCount[i]}))
     return (
       <div>

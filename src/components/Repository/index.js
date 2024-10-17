@@ -1,12 +1,11 @@
 import Loader from 'react-loader-spinner'
 import {Link} from 'react-router-dom'
 import {Component} from 'react'
-import GithubContext from '../GithubContext'
 import Header from '../Header'
 import Repos from '../Repos'
 import './index.css'
 
-const apistatusConstants = {
+const apiStatusConstants = {
   initial: 'INITIAL',
   success: 'SUCCESS',
   failure: 'FAILURE',
@@ -16,14 +15,14 @@ const apistatusConstants = {
 class Repositry extends Component {
   state = {
     repos: [],
-    apistatus: apistatusConstants.initial,
+    apistatus: apiStatusConstants.initial,
   }
 
   componentDidMount() {
     const {username} = this.props
     if (username === '') {
       this.setState({
-        apistatus: apistatusConstants.nodata,
+        apistatus: apiStatusConstants.nodata,
       })
     } else {
       this.getRepositryDetails()
@@ -32,8 +31,8 @@ class Repositry extends Component {
 
   getRepositryDetails = async () => {
     const {username} = this.props
-    this.setState({apistatus: apistatusConstants.loading})
-    const url = `https://apis2.ccbp.in/gpv/repos/${username}?api_key=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`
+    this.setState({apistatus: apiStatusConstants.loading})
+    const url = `https://apis2.ccbp.in/gpv/repos/${username}?api_key=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`
     const option = {
       method: 'GET',
     }
@@ -43,10 +42,10 @@ class Repositry extends Component {
       const data = await response.json()
       this.setState({
         repos: data,
-        apistatus: apistatusConstants.success,
+        apistatus: apiStatusConstants.success,
       })
     } else {
-      this.setState({apistatus: apistatusConstants.failure})
+      this.setState({apistatus: apiStatusConstants.failure})
     }
   }
 
@@ -122,13 +121,13 @@ class Repositry extends Component {
   renderdetails = () => {
     const {apistatus} = this.state
     switch (apistatus) {
-      case apistatusConstants.success:
+      case apiStatusConstants.success:
         return this.renderSuccess()
-      case apistatusConstants.failure:
+      case apiStatusConstants.failure:
         return this.renderFailure()
-      case apistatusConstants.loading:
+      case apiStatusConstants.loading:
         return this.renderLoading()
-      case apistatusConstants.nodata:
+      case apiStatusConstants.nodata:
         return this.renderNoData()
       default:
         return null

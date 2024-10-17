@@ -27,7 +27,7 @@ class Counter extends Component {
   getGithubProfile = async () => {
     const {username} = this.props
     this.setState({apistatus: 'LOADING'})
-    const url = `https://api.github.com/users/${username}?api_key=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`
+    const url = `https://api.github.com/users/${username}?api_key=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`
     const option = {method: 'GET'}
     const response = await fetch(url, option)
     if (response.ok) {

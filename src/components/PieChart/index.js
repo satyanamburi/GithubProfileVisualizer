@@ -16,6 +16,7 @@ const colors = [
 
 const Piechart = props => {
   const {languages} = props
+  console.log(languages)
   const data = languages
 
   return (

@@ -1,6 +1,5 @@
 import {Component} from 'react'
 import Loader from 'react-loader-spinner'
-import GithubContext from '../GithubContext'
 import Header from '../Header'
 import Contributors from '../Contributors'
 import PieChart from '../PieChart'
@@ -22,7 +21,7 @@ class RepositoryItemDetails extends Component {
     const {username} = this.props
     if (username === '') {
       this.setState({
-        apistatus: apiStatusConstants.failure,
+        apiStatus: apiStatusConstants.failure,
       })
     } else {
       this.getRepositoryItemDetails()
@@ -33,9 +32,7 @@ class RepositoryItemDetails extends Component {
     this.setState({apiStatus: apiStatusConstants.inProgress})
     const {username} = this.props
     const {repoName} = this.props
-    console.log(username)
-    console.log(repoName)
-    const url = `https://apis2.ccbp.in/gpv/specific-repo/${username}/${repoName}?api_key=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`
+    const url = `https://apis2.ccbp.in/gpv/specific-repo/${username}/${repoName}?api_key=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`
     const options = {
       method: 'GET',
     }
