@@ -1,4 +1,4 @@
-import GithubContext from '../GithubContext'
+import GithubContext from '../../GithubContext'
 import RepositoryItemDetails from '../RepositoryItemDetails'
 
 const RepositoryItemDetailsRoute = props => {

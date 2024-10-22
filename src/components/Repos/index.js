@@ -10,7 +10,7 @@ const Repos = props => {
     description: repo.description,
     stargazersCount: repo.stargazers_count,
     forksCount: repo.forks_count,
-    languages: repo.languages,
+    // languages: repo.language,
   })
   const repoItems = updatedRepoItems(repodetails)
   const {
@@ -36,18 +36,6 @@ const Repos = props => {
           <img src={avatarUrl} alt={login} className="repo-avatar" />
         </div>
         <p className="repo-desc">{description}</p>
-        <div className="languagesContainer">
-          {languages.map(l => (
-            <div
-              key={l.value}
-              className={`language ${
-                languagesList[Math.floor(Math.random() * 5)]
-              }`}
-            >
-              <p>{l.name}</p>
-            </div>
-          ))}
-        </div>
         <div className="repo-counts">
           <div className="star-container">
             <img

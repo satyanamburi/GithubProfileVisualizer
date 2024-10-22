@@ -32,14 +32,18 @@ class Repositry extends Component {
   getRepositryDetails = async () => {
     const {username} = this.props
     this.setState({apistatus: apiStatusConstants.loading})
-    const url = `https://apis2.ccbp.in/gpv/repos/${username}?api_key=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`
+    const url = `https://api.github.com/users/${username}/repos`
     const option = {
+      /* header: {
+        Authorization: 'Bearer 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',
+      }, */
       method: 'GET',
     }
     const response = await fetch(url, option)
-    console.log(response)
     if (response.ok) {
       const data = await response.json()
+      console.log(data)
+
       this.setState({
         repos: data,
         apistatus: apiStatusConstants.success,

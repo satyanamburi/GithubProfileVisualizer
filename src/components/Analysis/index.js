@@ -6,7 +6,7 @@ import PieChart from '../PieChart'
 import LinearChart from '../LinearChart'
 import './index.css'
 
-const apistatusConstants = {
+const apiStatusConstants = {
   initial: 'INITIAL',
   success: 'SUCCESS',
   failure: 'FAILURE',
@@ -14,13 +14,13 @@ const apistatusConstants = {
   nodata: 'NODATA',
 }
 class Analysis extends Component {
-  state = {analysis: [], apistatus: apistatusConstants.initial}
+  state = {analysis: [], apistatus: apiStatusConstants.initial}
 
   componentDidMount() {
     const {username} = this.props
     if (username === '') {
       this.setState({
-        apistatus: apistatusConstants.nodata,
+        apistatus: apiStatusConstants.nodata,
       })
     } else {
       this.getAnalysisDetails()
@@ -29,18 +29,21 @@ class Analysis extends Component {
 
   getAnalysisDetails = async () => {
     const {username} = this.props
-    this.setState({apistatus: apistatusConstants.loading})
-    const url = `https://apis2.ccbp.in/gpv/profile-summary/${username}?api_key=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`
+    this.setState({apistatus: apiStatusConstants.loading})
+    const url = `https://apis2.ccbp.in/gpv/profile-summary/${username}`
     const option = {
+      /* header: {
+        Authorization: 'Bearer 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',
+      }, */
       method: 'GET',
     }
     const response = await fetch(url, option)
     if (response.ok) {
       const data = await response.json()
 
-      this.setState({analysis: data, apistatus: apistatusConstants.success})
+      this.setState({analysis: data, apistatus: apiStatusConstants.success})
     } else {
-      this.setState({apistatus: apistatusConstants.failure})
+      this.setState({apistatus: apiStatusConstants.failure})
     }
   }
 
@@ -158,13 +161,13 @@ class Analysis extends Component {
   renderdetails = () => {
     const {apistatus} = this.state
     switch (apistatus) {
-      case apistatusConstants.success:
+      case apiStatusConstants.success:
         return this.renderSuccess()
-      case apistatusConstants.failure:
+      case apiStatusConstants.failure:
         return this.renderFailure()
-      case apistatusConstants.loading:
+      case apiStatusConstants.loading:
         return this.renderLoading()
-      case apistatusConstants.nodata:
+      case apiStatusConstants.nodata:
         return this.renderNoData()
       default:
         return null

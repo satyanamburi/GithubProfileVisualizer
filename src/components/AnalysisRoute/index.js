@@ -1,4 +1,4 @@
-import GithubContext from '../GithubContext'
+import GithubContext from '../../GithubContext'
 import Analysis from '../Analysis'
 
 const AnalysisRoute = () => (

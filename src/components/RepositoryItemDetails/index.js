@@ -8,12 +8,13 @@ import './index.css'
 const apiStatusConstants = {
   initial: 'INITIAL',
   success: 'SUCCESS',
-  failure: 'Failure',
+  failure: 'FAILURE',
   inProgress: 'IN_PROGRESS',
 }
 class RepositoryItemDetails extends Component {
   state = {
     repositoryItemDetailsList: '',
+    languagesList: '',
     apiStatus: apiStatusConstants.initial,
   }
 
@@ -32,12 +33,25 @@ class RepositoryItemDetails extends Component {
     this.setState({apiStatus: apiStatusConstants.inProgress})
     const {username} = this.props
     const {repoName} = this.props
-    const url = `https://apis2.ccbp.in/gpv/specific-repo/${username}/${repoName}?api_key=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`
-    const options = {
+    const url = `https://apis2.ccbp.in/gpv/specific-repo/${username}/${repoName}?api_key=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`
+    // const url = `https://api.github.com/repos/${username}/${repoName}`
+    const option = {
+      /* header: {
+        Authorization: 'Bearer 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',
+      }, */
       method: 'GET',
     }
-    const response = await fetch(url, options)
+    const response = await fetch(url, option)
     if (response.ok === true) {
+      const languages = `https://api.github.com/repos/${username}/${repoName}/languages`
+      const options = {
+        header: {
+          Authorization: 'Bearer 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',
+        },
+        method: 'GET',
+      }
+      const lanres = await fetch(languages, options)
+      console.log(lanres)
       const data = await response.json()
       console.log(data)
       this.setState({

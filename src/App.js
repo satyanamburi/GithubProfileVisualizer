@@ -1,6 +1,6 @@
 import {Component} from 'react'
 import {Route, Switch} from 'react-router-dom'
-import GithubContext from './components/GithubContext'
+import GithubContext from './GithubContext'
 import HomeRoute from './components/HomeRoute'
 import RepositoryRoute from './components/RepositoryRoute'
 import AnalysisRoute from './components/AnalysisRoute'

@@ -1,7 +1,7 @@
 import {Link} from 'react-router-dom'
 import {GiHamburgerMenu} from 'react-icons/gi'
 import {useState} from 'react'
-import GithubContext from '../GithubContext'
+import GithubContext from '../../GithubContext'
 import './index.css'
 
 const Header = () => {

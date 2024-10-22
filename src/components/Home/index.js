@@ -4,10 +4,10 @@ import {HiOutlineSearch} from 'react-icons/hi'
 import {RiBuildingLine} from 'react-icons/ri'
 import {IoLink, IoLocationSharp} from 'react-icons/io5'
 import Header from '../Header'
-import GithubContext from '../GithubContext'
+import GithubContext from '../../GithubContext'
 import './index.css'
 
-const apistatusConstants = {
+const apiStatusConstants = {
   initial: 'INITIAL',
   success: 'SUCCESS',
   failure: 'FAILURE',
@@ -15,7 +15,7 @@ const apistatusConstants = {
 }
 class Counter extends Component {
   state = {
-    apistatus: 'INITIAL',
+    apistatus: apiStatusConstants.initial,
     profile: [],
     errorMsg: '',
   }
@@ -26,9 +26,14 @@ class Counter extends Component {
 
   getGithubProfile = async () => {
     const {username} = this.props
-    this.setState({apistatus: 'LOADING'})
-    const url = `https://api.github.com/users/${username}?api_key=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`
-    const option = {method: 'GET'}
+    this.setState({apistatus: apiStatusConstants.loading})
+    const url = `https://api.github.com/users/${username}`
+    const option = {
+      /* header: {
+        Authorization: 'Bearer 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',
+      }, */
+      method: 'GET',
+    }
     const response = await fetch(url, option)
     if (response.ok) {
       const data = await response.json(response)
@@ -44,13 +49,13 @@ class Counter extends Component {
         location: data.location,
         blog: data.blog,
       }
-      console.log(data)
       this.setState({
         profile: updatedProfile,
-        apistatus: 'SUCCESS',
+        apistatus: apiStatusConstants.success,
       })
     } else {
-      this.setState({apistatus: 'FAILURE'})
+      console.log('hi')
+      this.setState({apistatus: apiStatusConstants.failure})
     }
   }
 
@@ -59,7 +64,7 @@ class Counter extends Component {
     if (username === '') {
       this.setState({
         errorMsg: 'Enter the valid github username',
-        apistatus: apistatusConstants.failure,
+        apistatus: apiStatusConstants.failure,
       })
     } else {
       this.getGithubProfile()
@@ -153,12 +158,13 @@ class Counter extends Component {
 
   renderdetails = () => {
     const {apistatus} = this.state
+    console.log(apistatus)
     switch (apistatus) {
-      case apistatusConstants.success:
+      case apiStatusConstants.success:
         return this.rendersuccess()
-      case apistatusConstants.failure:
+      case apiStatusConstants.failure:
         return this.renderFailure()
-      case apistatusConstants.loading:
+      case apiStatusConstants.loading:
         return this.renderLoading()
       default:
         return null
@@ -171,6 +177,7 @@ class Counter extends Component {
       <GithubContext.Consumer>
         {value => {
           const {username, enterUsername} = value
+
           const onSearch = event => {
             enterUsername(event)
           }
